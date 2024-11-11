@@ -1,0 +1,73 @@
+*{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.container{
+	width: 100%;
+	height: 100vh;
+	background: url('https://wallpapers.com/images/featured/colorful-abstract-background-rra8u4adw1ubypzl.jpg')no-repeat center;
+	background-size: cover;
+	padding-top: 100px;
+	text-align: center;
+	color: white;
+}
+
+.container h2{
+	font-size: 2.5rem;
+	font-weight: 900;
+	text-transform: uppercase;
+}
+
+.container p{
+	line-height: 1.5;
+}
+
+.range-slide{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+}
+
+.range-slide .box{
+	padding: 20px;
+	background: white;
+	margin: 10px 0;
+	border-radius: 5px;
+	box-shadow: 0 0 5px #0005;
+}
+
+.box p{
+	text-transform: uppercase;
+
+
+}
+
+.box .range{
+	width: 350px;
+	height: 40px;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+}
+
+.range input{
+	width: 100%;
+	height: 2px;
+	-webkit-appearance: none;
+	background: teal;
+	margin: 0 10px;
+	outline: none;
+}
+
+.range input::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	width: 18px;
+	height: 18px;
+	background: teal;
+	border-radius: 50%;
+	cursor: pointer;
+}
