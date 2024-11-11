@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accessibility Pop-Up</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="popup">
+        <h2>Accessibility Settings</h2>
+        <div class="setting-grid">
+            <div class="setting">
+                <i class="fas fa-volume-up icon"></i>
+                <label for="volume-control">Volume Control</label>
+                <input type="range" id="volume-control" min="0" max="100">
+            </div>
+            <div class="setting">
+                <i class="fas fa-adjust icon"></i>
+                <label for="contrast-toggle">High Contrast</label>
+                <button id="contrast-toggle">Enable</button>
+            </div>
+            <div class="setting">
+                <i class="fas fa-headphones-alt icon"></i>
+                <label for="text-to-speech">Text-to-Speech</label>
+                <button id="text-to-speech">Enable</button>
+            </div>
+            <div class="setting">
+                <i class="fas fa-microphone icon"></i>
+                <label for="voice-controls">Voice Controls</label>
+                <button id="voice-controls">Enable</button>
+            </div>
+            <div class="setting">
+                <i class="fas fa-mouse-pointer icon"></i>
+                <label for="cursor-size">Cursor Size</label>
+                <input type="range" id="cursor-size" min="1" max="5">
+            </div>
+            <div class="setting">
+                <i class="fas fa-search-plus icon"></i>
+                <label for="magnifier">Magnifying Glass</label>
+                <button id="magnifier">Enable</button>
+            </div>
+            <div class="setting">
+                <i class="fas fa-check icon"></i>
+                <label for="wgac-check">WGAC Guideline Check</label>
+                <button id="wgac-check">Check</button>
+            </div>
+            <div class="setting">
+                <i class="fas fa-font icon"></i>
+                <label for="dyslexia-font">Dyslexia-Friendly Font</label>
+                <button id="dyslexia-font">Enable</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,82 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f3f3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.popup {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    width: 400px;
+}
+
+.popup h2 {
+    font-size: 18px;
+    margin: 0 0 15px;
+    color: #333333;
+    text-align: center;
+}
+
+.setting-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 15px;
+}
+
+.setting {
+    display: contents;
+}
+
+.icon {
+    grid-column: span 1;
+    font-size: 1.2em;
+    color: #007bff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.setting label {
+    grid-column: span 3;
+    font-weight: bold;
+    color: #555555;
+    display: flex;
+    align-items: center;
+}
+
+button, input[type="range"] {
+    grid-column: span 8;
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    background-color: #e8e8e8;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #d8d8d8;
+}
+
+#contrast-toggle, #text-to-speech, #voice-controls, #magnifier, #wgac-check, #dyslexia-font {
+    background-color: #007bff;
+    color: #ffffff;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+#contrast-toggle:hover, #text-to-speech:hover, #voice-controls:hover, #magnifier:hover, #wgac-check:hover, #dyslexia-font:hover {
+    background-color: #0056b3;
+}
+
