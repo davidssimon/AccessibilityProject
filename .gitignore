@@ -1,0 +1,14 @@
+# ignore PSI API testing file
+PSI_API_test.html
+
+# ignore my little ranting :)
+push.txt
+
+# ignore testing files
+scraper_test/*
+
+# ignore testing node modules
+node_modules/*
+node_modules
+package-lock.json
+package.json
