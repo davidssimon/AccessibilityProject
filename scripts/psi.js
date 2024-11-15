@@ -7,28 +7,26 @@
  */
 
 function respondToFailedAudits(failedAuditKeywords) {
-    for (const i of failedAuditKeywords) {
-        // if (failedAuditKeywords[i].find("aria") != undefined) {console.log("A failed audit suggests that text-to-speech is negatively impacted")}
+    results = {
+        "screen_reader": false,
+        "aria": false,
+        "contrast": false,
+        "text_size": false
+    };
+    
+    for (const i in failedAuditKeywords) {
+        for (const a of failedAuditKeywords[i]) {
+            results[a] = true;
+        }
     }
+
+    // results contains all the categories that audits have failed in.
+    // keys are the categories, value is if it's true
+    console.log(results);
 }
 
 // regex search query for 
 const reAUDITDESCRIPTIONURL = /(?<=\()https\:\/\/dequeuniversity.com.+(?=\))/;
-const failedAuditResponses = {
-    // ARIA/screen reader WHITELIST failures (AKA screen reader has limited capability)
-    "aria": ["`<html>` element does not have a `[lang]` attribute", "Buttons do not have an accessible name", "Tables do not use `<caption>` instead of cells with the `[colspan]` attribute to indicate a caption.", "Links do not have a discernible name", "`<dl>`'s do not contain only properly-ordered `<dt>` and `<dd>` groups, `<script>`, `<template>` or `<div>` elements."],
-    // contrast WHITELIST faliures
-    "contrast": ["Links rely on color to be distinguishable."],
-    // illegibility, but not contrast, fWHITELIST failures
-    "illegibility": [],
-
-    // speech INPUT
-    "speech": ["Elements with visible text labels do not have matching accessible names."],
-
-    // magnifier related
-    "size": ['`[user-scalable="no"]` is used in the `<meta name="viewport">` element or the `[maximum-scale]` attribute is less than 5.']
-}
-
 const dequeUniversityKeywords = {
     "https://dequeuniversity.com/rules/axe/4.10/label": ["screen_reader"],
     "https://dequeuniversity.com/rules/axe/4.10/landmark-one-main": ["screen_reader", "aria"],
@@ -101,12 +99,14 @@ const dequeUniversityKeywords = {
 function setUpQuery(urlToCheck) {
     const api = 'https://www.googleapis.com/pagespeedonline/v5/runPagespeed';
     const parameters = {
-        category: "ACCESSIBILITY"
+        "category": "ACCESSIBILITY"
     };
     let query = `${api}?` + `url=${encodeURIComponent(urlToCheck)}`;
     for (key in parameters) {
         query += `&${key}=${parameters[key]}`;
     }
+
+    // console.log(query);
     return query;
 }
 
@@ -161,6 +161,8 @@ function run(urlToCheck) {
     fetch(url)
         .then(response => response.json())
         .then(json => {
+            let failedAudits = {};
+
             console.log(json);
             // json = JSON.parse(JSON.stringify(json));
             // console.log(`Audit information received: ${json}`);
@@ -175,23 +177,22 @@ function run(urlToCheck) {
             console.log("I'm starting to look at the audit results!");
             let currentElement;
             let currentAudit;
-            let currentAuditTitle;
-            let currentAuditType;
-            let totalScore = 0;
+            let currentFailedURL;
             for (const key in lighthouse["audits"]) {
 
-                currentElement = document.createElement("p");
-                currentElement.textContent = `${lighthouse["audits"][key]["title"]}`;
-                document.body.appendChild(currentElement);
+                // currentElement = document.createElement("p");
+                // currentElement.textContent = `${lighthouse["audits"][key]["title"]}`;
+                // document.body.appendChild(currentElement);
 
                 currentAudit = lighthouse["audits"][key];
 
                 try {
                     if (currentAudit["score"] === 0) {
-                        console.log(dequeUniversityKeywords[currentAudit["description"].match(reAUDITDESCRIPTIONURL)[0]]);
+                        currentFailedURL = currentAudit["description"].match(reAUDITDESCRIPTIONURL)[0];
+                        failedAudits[currentFailedURL] = dequeUniversityKeywords[currentFailedURL];
+                        // console.log(dequeUniversityKeywords[currentFailedURL]);
                     }
                 } catch {
-                    console.log("oof");
                     if (currentAudit["score"] != null) { // failure case (manual checks will have a "null" score)
                         console.log(`Failed regex search: ${currentAudit["description"]}`);
 
@@ -199,12 +200,10 @@ function run(urlToCheck) {
                 }
             }
 
-            // currentElement = document.createElement('p');
-            // currentElement.textContent = `Total score: ${totalScore}`;
-            // document.body.appendChild(currentElement);
-            console.log(`I'm done looking at the audit results! The audit has a total score of: ${totalScore}`);
+            respondToFailedAudits(failedAudits);
+            console.log(`I'm done looking at the audit results! The audit has a total score of: ${json["lighthouseResult"]["categories"]["accessibility"]["score"]}`);
         });
 }
 
 // link is the param
-// run("https://wikipedia.org");
+run("https://wikipedia.org");
