@@ -17,6 +17,7 @@ document.getElementById("contrast-toggle").addEventListener("click", function() 
 // WGAC SCREEN
 document.getElementById("wgac-check").addEventListener("click", function () {
     const isHighContrast = localStorage.getItem("highContrast") === "true";
+    // "inner html" that runs as a separate screen within the same frame
     document.body.innerHTML = `
         <div class="wgac-screen ${isHighContrast ? 'high-contrast' : ''}">
             <h2>WGAC Standards Check</h2>
@@ -27,6 +28,7 @@ document.getElementById("wgac-check").addEventListener("click", function () {
         </div>
     `;
 
+    // wgac standards to be connected to eric's code
     const standards = [
         { name: "Sample #1", pass: true },
         { name: "Sample #2", pass: true },
@@ -47,6 +49,7 @@ document.getElementById("wgac-check").addEventListener("click", function () {
         list.appendChild(listItem);
     });
 
+    //back arrow
     document.getElementById("back-arrow").addEventListener("click", () => {
         location.reload();
     });
@@ -55,6 +58,7 @@ document.getElementById("wgac-check").addEventListener("click", function () {
 // VOICE CONTROL SCREEN
 document.getElementById("voice-controls").addEventListener("click", function () {
     const isHighContrast = localStorage.getItem("highContrast") === "true";
+    // "inner html" that runs as a separate screen within the same frame
     document.body.innerHTML = `
         <div class="voice-control-screen ${isHighContrast ? 'high-contrast' : ''}">
             <h2>Voice Control Commands</h2>
@@ -69,6 +73,8 @@ document.getElementById("voice-controls").addEventListener("click", function () 
             </span>
         </div>
     `;
+
+    //back arrow
     document.getElementById("back-arrow").addEventListener("click", () => {
         location.reload();
     });

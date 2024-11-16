@@ -91,7 +91,7 @@ button:hover {
 
 
 /* MAIN SCREEN HIGH CONTRAST COMPATIBILITY */
-
+/* note: im just changing colors here */
 .high-contrast {
     color: #fff;
 }
@@ -139,7 +139,7 @@ button:hover {
 /*WGAC CHECK SCREEN*/
 
 .wgac-screen {
-  background-color: #ffffff;
+    background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
@@ -191,6 +191,7 @@ button:hover {
     color: #0056b3;
 }
 
+
 /* VOICE CONTROL SCREEN */
 
 .voice-control-screen {
@@ -221,8 +222,9 @@ button:hover {
     background-color: #f9f9f9;
 }
 
-/* OTHER SCREENS HIGH CONTRAST COMPATIBILITY */
 
+/* OTHER SCREENS HIGH CONTRAST COMPATIBILITY */
+/* note: once angain im just changing colors here */
 .high-contrast #voice-commands-list li {
     background-color: #333333;
     border-color: #ffffff;
