@@ -3,71 +3,80 @@
 }
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: Arial, sans-serif; /*font will change eventually*/
     background-color: #f3f3f3;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
+    height: 100%;
     margin: 0;
 }
 
+/*this is the actual body of the extension*/
 .popup {
     background-color: #ffffff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     padding: 20px;
-    width: 400px;
+    align-self: center;
+    min-height: fit-content;
+    min-width: fit-content;
 }
 
 .popup h2 {
-    font-size: 18px;
+    font-size: 2rem;
     margin: 0 0 15px;
     color: #333333;
     text-align: center;
 }
 
+/*all settings are within a grid*/
 .setting-grid {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 15px;
+    grid-template-columns: 1fr 3fr 3fr;
+    gap: 10px;
 }
 
-.setting {
+/*each setting is its own div, displaying the items in its row*/
+.setting1, .setting2, .setting3, .setting4, .setting5, .setting6, .setting7, .setting8 {
     display: contents;
 }
 
+/*the little pictures*/
 .icon {
-    grid-column: span 1;
-    font-size: 1.2em;
+    grid-column: 1;
+    font-size: 1.5rem;
     color: #007bff;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.setting label {
-    grid-column: span 3;
+.setting1 label, .setting2 label, .setting3 label, .setting4 label, .setting5 label, .setting6 label, .setting7 label, .setting8 label {
+    grid-column: 2;
     font-weight: bold;
     color: #555555;
     display: flex;
+    justify-content: flex-start;
+    padding-right: 10px;
     align-items: center;
 }
 
+/*buttons and sliders*/
 button, input[type="range"] {
-    grid-column: span 8;
+    grid-column: 3;
     width: 100%;
+    height: 100%;
     padding: 8px;
-    margin-top: 5px;
     border: 1px solid #cccccc;
     border-radius: 4px;
     background-color: #e8e8e8;
     cursor: pointer;
+    align-self: center;
 }
 
 button:hover {
     background-color: #d8d8d8;
 }
+
 
 #contrast-toggle, #text-to-speech, #voice-controls, #magnifier, #wgac-check, #dyslexia-font {
     background-color: #007bff;
@@ -80,3 +89,175 @@ button:hover {
     background-color: #0056b3;
 }
 
+
+/* MAIN SCREEN HIGH CONTRAST COMPATIBILITY */
+
+.high-contrast {
+    color: #fff;
+}
+
+.high-contrast body {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.high-contrast .popup {
+    background-color: #000000;
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+.high-contrast .icon {
+    color: #ffcc00; 
+}
+
+
+.high-contrast input[type="range"] {
+    accent-color: #f33bee; 
+}
+
+.high-contrast .setting-grid label {
+    color: #ffffff;
+}
+
+.high-contrast .popup h2 {
+    color: #fff;
+}
+
+.high-contrast #contrast-toggle, .high-contrast #text-to-speech, .high-contrast #voice-controls, .high-contrast #magnifier, .high-contrast #wgac-check, .high-contrast #dyslexia-font {
+    background-color: #f33bee;
+    color: #ffffff;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.high-contrast #contrast-toggle:hover, .high-contrast #text-to-speech:hover, .high-contrast #voice-controls:hover, .high-contrast #magnifier:hover, .high-contrast #wgac-check:hover, .high-contrast #dyslexia-font:hover {
+    background-color: #b329af;
+}
+
+
+/*WGAC CHECK SCREEN*/
+
+.wgac-screen {
+  background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    padding: 20px;
+    min-height: fit-content;
+    min-width: fit-content;
+}
+
+.wgac-screen h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+#wgac-standards-list {
+    list-style: none;
+    padding: 0;
+}
+
+#wgac-standards-list li {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.pass {
+    color: green;
+    font-weight: bold;
+}
+
+.fail {
+    color: red;
+    font-weight: bold;
+}
+
+.back-arrow {
+    font-size: 1.3rem;
+    color: #007bff;
+    cursor: pointer;
+    display: inline-block;
+    margin-bottom: 20px;
+    transition: 0.3s;
+}
+
+.back-arrow:hover {
+    color: #0056b3;
+}
+
+/* VOICE CONTROL SCREEN */
+
+.voice-control-screen {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    padding: 20px;
+    min-height: fit-content;
+    min-width: fit-content;
+}
+
+.voice-control-screen h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+#voice-commands-list {
+    list-style: none;
+    padding: 0;
+}
+
+#voice-commands-list li {
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+/* OTHER SCREENS HIGH CONTRAST COMPATIBILITY */
+
+.high-contrast #voice-commands-list li {
+    background-color: #333333;
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.high-contrast .wgac-screen, .high-contrast .voice-control-screen {
+    background-color: #000000;
+    color: #ffffff;
+    border-color: #ffffff;
+}
+
+.high-contrast .back-arrow {
+    color: #ffcc00;
+}
+
+.high-contrast ul li {
+    background-color: #333333;
+    border-color: #ffffff;
+}
+
+.high-contrast #wgac-standards-list li {
+    background-color: #5a5a5a;
+}
+
+.high-contrast .pass {
+    color: #00ffff;
+    font-weight: bold;
+}
+
+.high-contrast .fail {
+    color: #f33bee;
+    font-weight: bold;
+}
+
+.high-contrast .back-arrow:hover {
+    color: #8b8000;
+}
