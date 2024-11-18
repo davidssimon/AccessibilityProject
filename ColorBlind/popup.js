@@ -1,61 +1,56 @@
-// Select the contrast slider and its label
+//Giving values for elements from the html file, specifically the contrast slider
 const contrastSlider = document.getElementById("contrast");
 const contrastValueText = document.getElementById("contrast-value");
 
-// Select the brightness slider and its associated label
+//Giving values for elements from the html file, specifically the contrast slider
 const brightnessSlider = document.getElementById("brightness");
 const brightnessValueText = document.getElementById("brightness-value");
 
-// Select the error message container
+//Select the error message container
 const errorMessage = document.getElementById("error-message");
 
-/**
- * Function to apply contrast and brightness filters to the current webpage
- * @param {number} contrast - Contrast value (percentage)
- * @param {number} brightness - Brightness value (percentage)
- */
 function applyFilters(contrast, brightness) {
-  // Query the currently active tab in the current window
+  //Query the tab that the user is active on
   chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
-    const tab = tabs[0]; // Get the active tab's details
+    const tab = tabs[0]; //mark it as active in the array
 
-    // Check if the tab's URL is restricted
+    //check if the url is restricted or not
     if (tab.url.startsWith("chrome://") || tab.url.startsWith("https://chrome.google.com")) {
-      // Display an error message if the tab is restricted
+      //display an error message if it is restricted
       errorMessage.innerText = "Cannot adjust settings on this page.";
-      errorMessage.style.display = "block"; // Show the error message
+      errorMessage.style.display = "block"; //how the error message
       return;
     }
 
-    // Hide the error message if the URL is valid
+    //hide the error message if the url is not restricted
     errorMessage.style.display = "none";
 
-    // Inject a script into the active tab to apply the filters
+    //injecting a script to apply filters
     chrome.scripting.executeScript({
-      target: { tabId: tab.id }, // Specify the active tab
+      target: { tabId: tab.id }, //specifying to the active tab
       func: (contrast, brightness) => {
-        // Function executed in the tab's context
+        //executing the function and giving it values
         document.body.style.filter = `contrast(${contrast}%) brightness(${brightness}%)`;
       },
-      args: [contrast, brightness], // Pass contrast and brightness as arguments
+      args: [contrast, brightness], //pass contrast and brightness as arguments
     });
   });
 }
 
-// Event listener for changes to the contrast slider
+// event listener for any changes made to the contrast slider
 contrastSlider.addEventListener("input", (e) => {
-  const contrastValue = e.target.value; // Get the current value of the slider
-  contrastValueText.innerText = `${contrastValue}%`; // Update the displayed value
+  const contrastValue = e.target.value; //get the new value of the slider
+  contrastValueText.innerText = `${contrastValue}%`; //displaying the new value
 
-  // Apply the updated contrast and the current brightness
+  //update and apply new value to the filter
   applyFilters(contrastValue, brightnessSlider.value);
 });
 
-// Event listener for changes to the brightness slider
+//event listener for any changes made to the brightness slider
 brightnessSlider.addEventListener("input", (e) => {
-  const brightnessValue = e.target.value; // Get the current value of the slider
-  brightnessValueText.innerText = `${brightnessValue}%`; // Update the displayed value
+  const brightnessValue = e.target.value; //get the new value of the slider
+  brightnessValueText.innerText = `${brightnessValue}%`; //displaying the new value
 
-  // Apply the updated brightness and the current contrast
+  //update and apply new value to the filter
   applyFilters(contrastSlider.value, brightnessValue);
 });
