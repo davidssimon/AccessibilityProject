@@ -1,0 +1,25 @@
+{
+   "manifest_version": 3,
+   "name": "Volume Controller v4",
+   "description": "Boosts volume up to 600%",
+   "version": "0.1",
+
+   "icons": {
+      "128": "speaker.png"
+   },
+   "permissions": [
+      "tabCapture",
+      "activeTab",
+      "offscreen"
+   ],
+   "background": {
+      "service_worker": "service-worker.js"
+   },
+   "action": {
+      "default_icon": {
+         "128": "speaker.png"
+      },
+      "default_popup": "popup.html",
+      "default_title": "Volume Booster"
+   }
+}
