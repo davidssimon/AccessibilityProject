@@ -1,5 +1,5 @@
-/* FOR IMAGES */
-.hidden {
+  /* FOR IMAGES */
+  .hidden {
     display: none !important;
   }
   
@@ -11,6 +11,7 @@
     width: 100px;
     height: 100px;
     pointer-events: none;/* Ensure the glass doesn't interfere with mouse events */
+    z-index: 1000000000000;
   }
   
   
