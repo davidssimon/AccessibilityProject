@@ -1,12 +1,12 @@
 var port = chrome.runtime.connect();
-port.postMessage({ action: 'start' });
 
-var slide = document.getElementById('slide');
-var label = document.getElementById('label');
+var slide = document.getElementById('vol-slider');
+var label = document.getElementById('vol-label');
+var btn = document.getElementById('vol-button');
 
-port.postMessage({ action: 'give value' });
 port.onMessage.addListener(function (msg) {
   slide.value = parseInt(msg);
+  label.innerText = "Volume: " + Math.round(msg * 100) + "%";
 });
 
 slide.addEventListener('input', function () {
@@ -20,10 +20,12 @@ slide.addEventListener('input', function () {
   label.innerText = "Volume: " + rounded + "%";
 });
 
-button.onclick = function () {
+btn.onclick = function () {
   chrome.runtime.sendMessage({
-    type: 'stop-streaming',
+    type: 'reset',
     target: 'offscreen'
   });
-  window.close();
+  
+  slide.value = 1;
+  label.innerText = "Volume: 100%";
 }
