@@ -1,9 +1,3 @@
-var gainNode;
-var audioCtx;
-var streamer;
-var source;
-var prevFullScreen = false;
-var startValue = 1; //100%
 chrome.action.setPopup({ popup: "popup.html" });
 
 chrome.runtime.onConnect.addListener(async (tab) => {
