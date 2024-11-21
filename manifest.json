@@ -5,10 +5,16 @@
     "description": "Customize contents on a webpage!",
     "permissions": [
       "tabs",
-      "scripting"
+      "scripting",
+      "tabCapture",
+      "activeTab",
+      "offscreen"
     ],
     "action": {
       "default_popup": "index.html"
+    },
+    "background": {
+      "service_worker": "service-worker.js"
     },
     "content_scripts": [
       {

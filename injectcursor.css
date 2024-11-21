@@ -1,12 +1,13 @@
 /* This one works with specific elements and whole webpage */
-* {
+body.cursor-size * {
     cursor: url('graphics/arrow.svg'), auto;
   }
   
-  a {
+  
+  /*body.cursor-size*/ a {
     cursor: url('graphics/hand.svg'), pointer;
   }
   
-  p {
+  /*body.cursor-size*/p {
     cursor: url('graphics/text.svg') 25 25, text;
   }  

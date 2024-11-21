@@ -15,13 +15,13 @@
                 <i class="fas fa-volume-up icon"></i>
                 <label for="volume-control">Volume Control</label>
                 <input type="range" id="volume-control" min="0" max="6" step="0.01" value="1">
-                <button class="volume-btn"><i class="fa-solid fa-rotate-right"></i></button>
+                <button id="vol-button" class="volume-btn"><i class="fa-solid fa-rotate-right"></i></button>
             </div>
             <div class="setting">
                 <i class="fas fa-adjust icon"></i>
                 <label for="contrast-toggle">High Contrast</label>
                 <button id="contrast-toggle">Enable</button>
-                <script src="cbpopup.js"></script>
+                <script src="cbpopup2.js"></script>
             </div>
             
             <div class="setting">
@@ -29,8 +29,33 @@
                 <label for="text-to-speech">Text-to-Speech</label>
                 <button id="text-to-speech">Enable</button>
                 <script src="ttspopup.js"></script>
+                <style>
+                    #ttsbuttons {
+                        display: none;
+                    }
+                </style>
+            
+                <div id="ttsbuttons" class="ttsbuttons">
+                    <button id="start">Start</button>
+                    <button id="pause">Pause</button>
+                    <button id="resume">Resume</button>
+            
+                    <br><br>
+                    <label for="voices">Select Voice:</label>
+                    <select id="voices"></select>
+            
+                    <div class="slider-container">
+                        <label for="pitch">Pitch: <span id="pitchValue">1</span></label>
+                        <input type="range" id="pitch" min="0" max="2" step="0.1" value="1">
+                    </div>
+            
+                    <div class="slider-container">
+                        <label for="rate">Speed (Rate): <span id="rateValue">1</span></label>
+                        <input type="range" id="rate" min="0.1" max="2" step="0.1" value="1">
+                    </div>
+            
+                </div>
             </div>
-             
     
             <div class="setting">
                 <i class="fas fa-microphone icon"></i>

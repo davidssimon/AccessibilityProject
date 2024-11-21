@@ -48,7 +48,7 @@ document.getElementById("contrast-toggle").addEventListener("click", function ()
 document.getElementById("voice-controls").addEventListener("click", function () {
   //toggle voice controls
   document.body.classList.toggle("voice-controls");
-  this.textContent = this.textContent === "Enable" ? "Disable" : "Enable";
+  this.textContent = "Open";
 });
 
 document.getElementById("magnifier").addEventListener("click", function () {
@@ -66,7 +66,7 @@ document.getElementById("dyslexia-font").addEventListener("click", function () {
       func: toggleDyslexiaFont
     });
   });
-
+ // I'm making a big cursor
   // Update button text
   this.textContent = this.textContent === "Enable" ? "Disable" : "Enable";
 });
@@ -76,7 +76,7 @@ function toggleDyslexiaFont() {
   document.body.classList.toggle("dyslexia-font");
 }
 
-/*document.getElementById("cursor-size").addEventListener("click", function () {
+document.getElementById("cursor-size").addEventListener("click", function () {
   // Get the current tab ID
   chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     // Toggle the dyslexia-font class in the content of the current tab
@@ -93,97 +93,10 @@ function toggleDyslexiaFont() {
 // Function to toggle the dyslexia-font class on the page
 function toggleCursorSize() {
   document.body.classList.toggle("cursor-size");
-}*/
+}
 
 
-//
-//      TEXT TO SPEECH SECTION
-//
-// function startSpeech(text) {
-//   if (speechSynthesisActive) return; // Prevent starting a new speech if it's already active
 
-//   speechSynthesisActive = true;
-//   utterance = new SpeechSynthesisUtterance(text);
-
-//   // Set the selected voice
-//   const selectedVoice = voicesSelect.value;
-//   const voice = voices.find(v => v.name === selectedVoice);
-//   utterance.voice = voice;
-
-//   // Set the pitch and rate from the sliders
-//   utterance.pitch = parseFloat(pitchSlider.value);
-//   utterance.rate = parseFloat(rateSlider.value);
-
-//   utterance.onend = () => {
-//     speechSynthesisActive = false;
-//   };
-
-//   window.speechSynthesis.speak(utterance);
-// }
-
-// function pauseSpeech() {
-//   if (speechSynthesisActive && !isPaused) {
-//     window.speechSynthesis.pause();
-//     isPaused = true;
-//   }
-// }
-
-// function resumeSpeech() {
-//   if (speechSynthesisActive && isPaused) {
-//     window.speechSynthesis.resume();
-//     isPaused = false;
-//   }
-// }
-
-// function skipSpeech() {
-//   if (speechSynthesisActive) {
-//     window.speechSynthesis.cancel();
-//     speechSynthesisActive = false;
-//   }
-// }
-
-// function extractText() {
-//   const pageText = document.body.innerText.trim();
-//   if (!pageText) {
-//     const paragraphs = document.querySelectorAll('p');
-//     return Array.from(paragraphs).map(p => p.innerText).join("\n");
-//   }
-//   return pageText;
-// }
-
-// // Populate the voices dropdown
-// function populateVoices() {
-//   voices = window.speechSynthesis.getVoices();
-//   voicesSelect.innerHTML = ''; // Clear the existing options
-
-//   voices.forEach(voice => {
-//     const option = document.createElement('option');
-//     option.value = voice.name;
-//     option.textContent = voice.name;
-//     voicesSelect.appendChild(option);
-//   });
-
-//   // Set default voice
-//   if (voices.length > 0) {
-//     voicesSelect.value = voices[0].name;
-//   }
-// }
-
-// // Load voices when available
-// if (window.speechSynthesis.onvoiceschanged !== undefined) {
-//   window.speechSynthesis.onvoiceschanged = populateVoices;
-// } else {
-//   populateVoices();
-// }
-
-// Update pitch and rate values when sliders are changed
-// pitchSlider.addEventListener("input", () => {
-//   pitchValue.textContent = pitchSlider.value;
-// });
-
-// rateSlider.addEventListener("input", () => {
-//   rateValue.textContent = rateSlider.value;
-// });
 
 //
 //      MAGNIFY SECTION
@@ -208,22 +121,21 @@ document.getElementById("wgac-check").addEventListener("click", async function (
       let url = tabs[0].url;
       console.log(`Preparing to audit: ${url}`);
       log.innerHTML += "Preparing to audit: " + url;
-      let a = await run(url);
-      log.innerHTML += JSON.stringify(a);
+      let results = await run(url);
+      log.innerHTML += JSON.stringify(results);
 
-      if (a["screen_reader"] || a["aria"]) { // screen reader is negatively impacted
+      if (results["screen_reader"] || results["aria"]) { // screen reader is negatively impacted
         // notify user that text to speech might not work as expected on the current webpage
-        log.innerHTML += "";
+        log.innerHTML += "At least one aria or screen reader audit has failed. The screen reader experience may be negatively impacted.";
       }
-      if (a["contrast"]) { // contrast is poor in some area of the webpage
-        // auto enable contrast tools
+      if (results["contrast"]) { // contrast is poor in some area of the webpage
         // notify user that contrast tools have been enabled because contrast issues have been automatically detected.
-        // add option to disable auto-enable?
+        log.innerHTML += "At least one contrast audit has failed. Contrast on this webpage may be poor. Consider enabling contrast tools."
       }
 
       // NOTE: this code never runs
-      if (a["text_size"]) { // notify user that some text might not be easily visible
-
+      if (results["text_size"]) { // notify user that some text might not be easily visible
+        log.innerHTML += "At least one text size audit has failed. Some text might not be easily visible. Consider enabling magnifier.";
       }
 
       // while (!globalThis.finished) {
@@ -412,7 +324,7 @@ async function run(urlToCheck) {
 
   const lighthouse = json.lighthouseResult;
 
-  document.getElementById("log").innerHTML = JSON.stringify(json.lighthouseResult);
+  // document.getElementById("log").innerHTML = JSON.stringify(json.lighthouseResult);
 
   const audits = json.lighthouseResult["audits"];
   // console.log("I'm starting to look at the audit results!");
@@ -451,3 +363,30 @@ async function run(urlToCheck) {
 
 // // link is the param
 // run("");
+
+//VOLUME CONTROL
+var port = chrome.runtime.connect();
+
+var slide = document.getElementById('volume-control');
+var btn = document.getElementById('vol-button');
+
+port.onMessage.addListener(function (msg) {
+  slide.value = parseInt(msg);
+});
+
+slide.addEventListener('input', function () {
+  chrome.runtime.sendMessage({
+    type: 'change-vol',
+    target: 'offscreen',
+    data: this.value
+  });
+});
+
+btn.onclick = function () {
+  chrome.runtime.sendMessage({
+    type: 'reset',
+    target: 'offscreen'
+  });
+  
+  slide.value = 1;
+}

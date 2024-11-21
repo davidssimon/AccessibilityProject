@@ -57,29 +57,46 @@ body {
     align-items: center;
 }
 
-button, input[type="range"] {
-    grid-column: span 8;
-    width: 100%;
-    padding: 8px;
-    margin-top: 5px;
-    border: 1px solid #cccccc;
-    border-radius: 4px;
-    background-color: #e8e8e8;
+.volume-btn {
+    grid-column: span 1;
+    background: none;
+    border: none;
+    transition: 0.1s;
+  }
+  
+  .volume-btn:hover {
+    background: none;
     cursor: pointer;
-}
+    transform: scale(1.05);
+  }
+  
+  #volume-control {
+    grid-column: span 7;
+  }
+  
+  #contrast-toggle, #text-to-speech, #voice-controls, #cursor-size, #magnifier, #dyslexia-font, #wgac-check, #range1, #range2, #range3 {
+      grid-column: span 8;
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #cccccc;
+      border-radius: 4px;
+      background-color: #e8e8e8;
+      cursor: pointer;
+  }
 
 button:hover {
     background-color: #d8d8d8;
 }
 
-#contrast-toggle, #text-to-speech, #voice-controls, #magnifier, #wgac-check, #dyslexia-font {
+#contrast-toggle, #text-to-speech, #cursor-size, #voice-controls, #magnifier, #wgac-check, #dyslexia-font {
     background-color: #007bff;
     color: #ffffff;
     font-weight: bold;
     transition: background-color 0.3s;
 }
 
-#contrast-toggle:hover, #text-to-speech:hover, #voice-controls:hover, #magnifier:hover, #wgac-check:hover, #dyslexia-font:hover {
+#contrast-toggle:hover, #text-to-speech:hover, #cursor-size:hover, #voice-controls:hover, #magnifier:hover, #wgac-check:hover, #dyslexia-font:hover {
     background-color: #0056b3;
 }
 
