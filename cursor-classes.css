@@ -1,0 +1,12 @@
+/* this one works by injecting classes */
+.c-arrow {
+  cursor: url('graphics/arrow.svg'), auto;
+}
+
+.c-hand {
+  cursor: url('graphics/hand.svg'), auto;
+}
+
+.c-text {
+  cursor: url('graphics/text.svg'), auto;
+}

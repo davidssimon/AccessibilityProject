@@ -1,0 +1,38 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text-to-Speech</title>
+    <style>
+        .slider-container {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2>Text-to-Speech</h2>
+    <button id="start">Start</button>
+    <button id="pause">Pause</button>
+    <button id="resume">Resume</button>
+
+    <br><br>
+    <label for="voices">Select Voice:</label>
+    <select id="voices"></select>
+
+    <div class="slider-container">
+        <label for="pitch">Pitch: <span id="pitchValue">1</span></label>
+        <input type="range" id="pitch" min="0" max="2" step="0.1" value="1">
+    </div>
+
+    <div class="slider-container">
+        <label for="rate">Speed (Rate): <span id="rateValue">1</span></label>
+        <input type="range" id="rate" min="0.1" max="2" step="0.1" value="1">
+    </div>
+
+    <script src="ttspopup2.js"></script>
+</body>
+</html>

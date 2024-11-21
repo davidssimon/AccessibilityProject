@@ -1,0 +1,23 @@
+{
+    "name": "Group Project",
+    "manifest_version": 3,
+    "version": "0.1",
+    "description": "Customize contents on a webpage!",
+    "permissions": [
+      "tabs",
+      "scripting"
+    ],
+    "action": {
+      "default_popup": "index.html"
+    },
+    "content_scripts": [
+      {
+        "css": ["inject.css"],
+        "matches": ["<all_urls>"]
+      }
+    ],
+    "host_permissions": [
+      "http://*/*",
+      "https://*/*"
+    ]
+  }

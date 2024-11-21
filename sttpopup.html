@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to speech/Speech to text</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        #startStopButton {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            min-height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <button id="dumbshit">Speak</button>
+    <textarea id="textInput" rows="1" cols="70" placeholder="Type Here"></textarea>
+    
+    <script src="script_TextToSpeech(nik).js"></script>
+
+    <button id="startStopButton">Start Listening</button>
+    <div id="result"></div>
+    <script src="script_SpeechToText(nik).js"> </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> <!-- Links to an external font stylesheet for icons -->
+  <title>Contrast and Brightness Editor</title>
+  
+</head>
+
+<body>
+  <h3>Edit Colors</h3>
+  <!-- Heading for the popup -->
+
+  <!-- Contrast slider label and value -->
+  <label for="contrast">
+    Contrast: <span id="contrast-value">100%</span> <!-- Display current contrast value -->
+  </label>
+  <i class="fa fa-adjust" aria-hidden="true"></i>
+  <input type="range" id="contrast" min="50" max="200" value="100">
+  <!-- Contrast slider: min 50%, max 200%, default 100% -->
+
+  <!-- Brightness slider label and value -->
+  <label for="brightness">
+    Brightness: <span id="brightness-value">100%</span> <!-- Display current brightness value -->
+  </label>
+  <i class="fa fa-sun-o" aria-hidden="true"></i> <!-- Icon -->
+  <input type="range" id="brightness" min="50" max="200" value="100">
+  <!-- Brightness slider: min 50%, max 200%, default 100% -->
+
+  <!-- Error message placeholder -->
+  <div id="error-message" style="color: red; display: none;">
+    <!-- Hidden by default, shown if there's an error -->
+  </div>
+
+  <script src="cbpopup2.js"></script>
+</body>
+
+<style>
+
+  body {
+    font-family: Arial, sans-serif;
+    padding: 10px; 
+  }
+
+
+  input[type="range"] {
+    width: 100%; 
+    margin-bottom: 10px; 
+  }
+</style>
+
+</html>

@@ -1,0 +1,12 @@
+/* This one works with specific elements and whole webpage */
+* {
+    cursor: url('graphics/arrow.svg'), auto;
+  }
+  
+  a {
+    cursor: url('graphics/hand.svg'), pointer;
+  }
+  
+  p {
+    cursor: url('graphics/text.svg') 25 25, text;
+  }  
