@@ -7,8 +7,8 @@ chrome.runtime.onMessage.addListener(async (message) => { //listens for messages
       case 'start-streaming':
         start(message.data);
         break;
-      case 'stop-streaming':
-        stop();
+      case 'reset':
+        volume(1); //reset to 100% volume
         break;
       case 'change-vol':
         volume(message.data);
@@ -41,11 +41,11 @@ async function start(streamId) {
   source.connect(gainNode).connect(output.destination);
 }
 
-async function stop() {
-  media.getAudioTracks()[0].stop();
-  output.close();
-  console.log("close");
-}
+//commented out in case i want to use it
+// async function stop() {
+//   media.getAudioTracks()[0].stop();
+//   output.close();
+// }
 
 async function volume(vol) {
   gainNode.gain.value = vol;
