@@ -5,5 +5,3 @@ Limitations: Bar value does not save when closing the extension popup and re-ope
 Add to manifest.json: 
     "permissions": ["tabCapture", "activeTab", "offscreen"],
     "background": {"service_worker": "service-worker.js"}
-
-TODO: Convert off button to reset button
