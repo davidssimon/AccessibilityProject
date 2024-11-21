@@ -74,7 +74,7 @@ body {
     grid-column: span 7;
   }
   
-  #contrast-toggle, #text-to-speech, #voice-controls, #cursor-size, #magnifier, #dyslexia-font, #wgac-check, #range1, #range2, #range3 {
+  #contrast-toggle, #text-to-speech, #voice-controls, #cursor-size, #magButton, #dyslexia-font, #wgac-check, #magRange1, #magRange2, #magRange3 {
       grid-column: span 8;
       width: 100%;
       padding: 8px;
@@ -89,14 +89,14 @@ button:hover {
     background-color: #d8d8d8;
 }
 
-#contrast-toggle, #text-to-speech, #cursor-size, #voice-controls, #magnifier, #wgac-check, #dyslexia-font {
+#contrast-toggle, #text-to-speech, #cursor-size, #voice-controls, #magButton, #wgac-check, #dyslexia-font {
     background-color: #007bff;
     color: #ffffff;
     font-weight: bold;
     transition: background-color 0.3s;
 }
 
-#contrast-toggle:hover, #text-to-speech:hover, #cursor-size:hover, #voice-controls:hover, #magnifier:hover, #wgac-check:hover, #dyslexia-font:hover {
+#contrast-toggle:hover, #text-to-speech:hover, #cursor-size:hover, #voice-controls:hover, #magButton:hover, #wgac-check:hover, #dyslexia-font:hover {
     background-color: #0056b3;
 }
 

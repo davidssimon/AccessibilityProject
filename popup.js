@@ -8,6 +8,7 @@
 // const pitchValue = document.getElementById("pitchValue");
 // const rateValue = document.getElementById("rateValue");
 
+
 const log = document.getElementById("log");
 
 let utterance;
@@ -76,10 +77,22 @@ document.getElementById("voice-controls").addEventListener("click", function () 
   document.body.classList.toggle("voice-controls");
 });
 
-document.getElementById("magnifier").addEventListener("click", function () {
-  //toggle magnifying glass
-  document.body.classList.toggle("magnifier");
-  this.textContent = this.textContent === "Enable" ? "Disable" : "Enable";
+
+//Mag button 
+/*var ismagnifying = false;
+annihilateMagnifier();*/
+document.getElementById('magButton').addEventListener('click', function () {
+  chrome.tabs.query({ active: true, currentWindow: true }, function(tabs) {
+    chrome.scripting.executeScript({
+      target: { tabId: tabs[0].id },
+    });
+  });
+  /*ismagnifying = !ismagnifying;
+    if (ismagnifying) {
+        magnifying();
+    } else {
+        annihilateMagnifier();
+    }*/
 });
 
 document.getElementById("dyslexia-font").addEventListener("click", function () {
@@ -123,17 +136,6 @@ function toggleCursorSize() {
 
 
 
-//
-//      MAGNIFY SECTION
-//
-//
-//
-//
-//
-//
-
-
-
 /*
  * WCAG GUIDELINE SECTION
  */
@@ -147,29 +149,24 @@ document.getElementById("wgac-check").addEventListener("click", async function (
       console.log(`Preparing to audit: ${url}`);
       log.innerHTML += "Preparing to audit: " + url;
       let results = await run(url);
-      log.innerHTML += JSON.stringify(results);
+      // log.innerHTML += JSON.stringify(results);
+      log.innerHTML += "\nAudit complete.\n";
 
       if (results["screen_reader"] || results["aria"]) { // screen reader is negatively impacted
         // notify user that text to speech might not work as expected on the current webpage
-        log.innerHTML += "At least one aria or screen reader audit has failed. The screen reader experience may be negatively impacted.";
+        log.innerHTML += "\nAt least one aria or screen reader audit has failed. The screen reader experience may be negatively impacted.";
       }
       if (results["contrast"]) { // contrast is poor in some area of the webpage
         // notify user that contrast tools have been enabled because contrast issues have been automatically detected.
-        log.innerHTML += "At least one contrast audit has failed. Contrast on this webpage may be poor. Consider enabling contrast tools."
+        log.innerHTML += "\nAt least one contrast audit has failed. Contrast on this webpage may be poor. Consider enabling contrast tools."
       }
 
       // NOTE: this code never runs
       if (results["text_size"]) { // notify user that some text might not be easily visible
-        log.innerHTML += "At least one text size audit has failed. Some text might not be easily visible. Consider enabling magnifier.";
+        log.innerHTML += "\nAt least one text size audit has failed. Some text might not be easily visible. Consider enabling magnifier.";
       }
 
-      // while (!globalThis.finished) {
-
-      // }
-
-      // document.getElementById("log").innerHTML = JSON.stringify(globalThis.response);
-
-      // use `url` here inside the callback because it's asynchronous!
+      document.getElementById("wgac-check").textContent = "Done!";
     });
 });
 
@@ -287,47 +284,6 @@ function setUpQuery(urlToCheck) {
 }
 
 /*
- * Returns a string with "psi.js"'s recognized failure type, if found. Returns "Other" otherwise.
- */
-// function checkFailure(title) {
-//     let array;
-//     for (const failureType in failedAuditResponses) {
-//         array = failedAuditResponses[failureType];
-//         for (let i of array) {
-//             if (title == i) {
-//                 return failureType;
-//             }
-//         }
-//     }
-
-//     return "Other";
-// }
-
-// function findAuditType(dequeUniversityUrl) {
-//     fetch(dequeUniversityUrl).then(response => {
-//         switch (response.status) {
-//             case 200: // OK
-//                 console.log(response.text());
-//                 break;
-//             default:
-//                 console.log(response);
-
-//                 console.log("weird dequeuUniversityURL response");
-//                 break;
-//         }
-//     });
-
-//     // var xhr = new XMLHttpRequest();
-//     // xhr.open('GET', dequeUniversityUrl, true);
-//     // xhr.onreadystatechange = function () {
-//     //     if (xhr.readyState === 4) {
-//     //         console.log(xhr.responseText);
-//     //     }
-//     // };
-//     // xhr.send(null);
-// }
-
-/*
  * @param urlToCheck
  * returns void.
  */
@@ -338,9 +294,6 @@ async function run(urlToCheck) {
   let json = await response.json();
 
   let failedAudits = {};
-
-  // json = JSON.parse(JSON.stringify(json));
-  // console.log(`Audit information received: ${json}`);
 
   // See https://developers.google.com/speed/docs/insights/v5/reference/pagespeedapi/runpagespeed#response
   // to learn more about each of the properties in the response object.

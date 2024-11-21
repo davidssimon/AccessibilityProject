@@ -19,6 +19,7 @@
     "content_scripts": [
       {
         "css": ["inject.css"],
+        "js": ["content.js"],
         "matches": ["<all_urls>"]
       }
     ],

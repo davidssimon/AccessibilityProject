@@ -1,7 +1,7 @@
 chrome.action.setPopup({ popup: "Index.html" });
 
 chrome.runtime.onConnect.addListener(async (tab) => {
-    const existingContexts = await chrome.runtime.getContexts({}); //gets all the information associated with the browser, in this case looking for an offscreen document
+    const existingContexts = await chrome.runtime.getContexts({}); //gets all the information associated with the browser, in this case looking for an offscreen documentW
 
     const offscreenDocument = existingContexts.find(
         (c) => c.contextType === 'OFFSCREEN_DOCUMENT'
