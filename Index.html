@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,99 +8,115 @@
     <link rel="stylesheet" href="stylesheet.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
+
 <body>
-    <div class="popup">
-        <h2>Accessibility Settings</h2>
-        <div class="setting-grid">
-            <div class="setting">
-                <i class="fas fa-volume-up icon"></i>
-                <label for="volume-control">Volume Control</label>
-                <input type="range" id="volume-control" min="0" max="6" step="0.01" value="1">
-                <button id="vol-button" class="volume-btn"><i class="fa-solid fa-rotate-right"></i></button>
-            </div>
-            <div class="setting">
-                <i class="fas fa-adjust icon"></i>
-                <label for="contrast-toggle">High Contrast</label>
-                <button id="contrast-toggle">Enable</button>
-                <script src="cbpopup2.js"></script>
-            </div>
-            
-            <div class="setting">
-                <i class="fas fa-headphones-alt icon"></i>
-                <label for="text-to-speech">Text-to-Speech</label>
-                <button id="text-to-speech">Enable</button>
-                <script src="ttspopup.js"></script>
-                <style>
-                    #ttsbuttons {
-                        display: none;
-                    }
-                </style>
-            
-                <div id="ttsbuttons" class="ttsbuttons">
-                    <button id="start">Start</button>
-                    <button id="pause">Pause</button>
-                    <button id="resume">Resume</button>
-            
-                    <br><br>
-                    <label for="voices">Select Voice:</label>
-                    <select id="voices"></select>
-            
-                    <div class="slider-container">
-                        <label for="pitch">Pitch: <span id="pitchValue">1</span></label>
-                        <input type="range" id="pitch" min="0" max="2" step="0.1" value="1">
+    <div style="display: flex; flex-direction: horizontal;">
+
+        <div class="popup">
+            <h2>Accessibility Settings</h2>
+
+            <div class="setting-grid">
+                <div class="setting">
+                    <i class="fas fa-volume-up icon"></i>
+                    <label for="volume-control">Volume Control</label>
+                    <input type="range" id="volume-control" min="0" max="6" step="0.01" value="1">
+                    <button id="vol-button" class="volume-btn"><i class="fa-solid fa-rotate-right"></i></button>
+                </div>
+                <div class="setting">
+                    <i class="fas fa-adjust icon"></i>
+                    <label for="contrast-toggle">High Contrast</label>
+                    <button id="contrast-toggle">Open</button>
+                    <!-- <script src="cbpopup2.js"></script> -->
+                </div>
+
+                <div class="setting">
+                    <i class="fas fa-headphones-alt icon"></i>
+                    <label for="text-to-speech">Text-to-Speech</label>
+                    <button id="text-to-speech">Open</button>
+                    <script src="ttspopup.js"></script>
+                </div>
+                <div class="setting">
+
+                    <style>
+                        #ttsbuttons {
+                            display: none;
+                        }
+                    </style>
+
+                    <div id="ttsbuttons" class="ttsbuttons">
+                        <button id="start">Start</button>
+                        <button id="pause">Pause</button>
+                        <button id="resume">Resume</button>
+
+                        <br><br>
+                        <label for="voices">Select Voice:</label>
+                        <select id="voices"></select>
+
+                        <div class="slider-container">
+                            <label for="pitch">Pitch: <span id="pitchValue">1</span></label>
+                            <input type="range" id="pitch" min="0" max="2" step="0.1" value="1">
+                        </div>
+
+                        <div class="slider-container">
+                            <label for="rate">Speed (Rate): <span id="rateValue">1</span></label>
+                            <input type="range" id="rate" min="0.1" max="2" step="0.1" value="1">
+                        </div>
+
                     </div>
-            
-                    <div class="slider-container">
-                        <label for="rate">Speed (Rate): <span id="rateValue">1</span></label>
-                        <input type="range" id="rate" min="0.1" max="2" step="0.1" value="1">
-                    </div>
-            
+                </div>
+
+                <div class="setting">
+                    <i class="fas fa-microphone icon"></i>
+                    <label for="voice-controls">Voice Controls</label>
+                    <button id="voice-controls">Open</button>
+                    <script src="sttpopup.js"></script>
+                </div>
+                <div class="setting">
+                    <i class="fas fa-mouse-pointer icon"></i>
+                    <label for="cursor-size">Cursor Size</label>
+                    <button id="cursor-size">Enable</button>
+                </div>
+                <div class="setting">
+                    <i class="fas fa-search-plus icon"></i>
+                    <label for="magnifier">Magnifying Glass</label>
+                    <button id="magButton">Enable</button>
+                </div>
+                <div class="setting">
+                    <i class="fas fa-mouse-pointer icon"></i>
+                    <label for="magRange1">Cursor Size</label>
+                    <input type="range" id="magRange1" min="1" max="6" value="3">
+                </div>
+                <div class="setting">
+                    <i class="fas fa-mouse-pointer icon"></i>
+                    <label for="magRange2">Cursor Size</label>
+                    <input type="range" id="magRange2" min="1" max="6" value="3">
+                </div>
+                <div class="setting">
+                    <i class="fas fa-mouse-pointer icon"></i>
+                    <label for="magRange3">Cursor Size</label>
+                    <input type="range" id="magRange3" min="1" max="6" value="3">
+                </div>
+                <div class="setting">
+                    <i class="fas fa-check icon"></i>
+                    <label for="wgac-check">WGAC Guideline Check</label>
+                    <button id="wgac-check">Check</button>
+                </div>
+                <div class="setting">
+                    <i class="fas fa-font icon"></i>
+                    <label for="dyslexia-font">Dyslexia-Friendly Font</label>
+                    <button id="dyslexia-font">Change</button>
                 </div>
             </div>
-    
-            <div class="setting">
-                <i class="fas fa-microphone icon"></i>
-                <label for="voice-controls">Voice Controls</label>
-                <button id="voice-controls">Enable</button>
-                <script src="sttpopup.js"></script>
-            </div>
-            <div class="setting">
-                <i class="fas fa-mouse-pointer icon"></i>
-                <label for="cursor-size">Cursor Size</label>
-                <button id="cursor-size">Enable</button>
-            </div>
-            <div class="setting">
-                <i class="fas fa-search-plus icon"></i>
-                <label for="magnifier">Magnifying Glass</label>
-                <button id="magnifier">Enable</button>
-            </div>
-            <div class="setting">
-                <i class="fas fa-mouse-pointer icon"></i>
-                <label for="range1">Cursor Size</label>
-                <input type="range" id="range1" min="1" max="6" value="3">
-            </div>
-            <div class="setting">
-                <i class="fas fa-mouse-pointer icon"></i>
-                <label for="range2">Cursor Size</label>
-                <input type="range" id="range2" min="1" max="6" value="3">
-            </div>
-            <div class="setting">
-                <i class="fas fa-mouse-pointer icon"></i>
-                <label for="range3">Cursor Size</label>
-                <input type="range" id="range3" min="1" max="6" value="3">
-            </div>
-            <div class="setting">
-                <i class="fas fa-check icon"></i>
-                <label for="wgac-check">WGAC Guideline Check</label>
-                <button id="wgac-check">Check</button>
-            </div>
-            <div class="setting">
-                <i class="fas fa-font icon"></i>
-                <label for="dyslexia-font">Dyslexia-Friendly Font</label>
-                <button id="dyslexia-font">Enable</button>
-            </div>
+
+            <!-- for testing: -->
+            <!-- <p>This is text that you can probably magnify!</p> -->
+ 
+
+            <textarea id="log" style="background-color: aquamarine; min-height: 40px;"></textarea>
         </div>
-        <textarea id="log" style="background-color: aquamarine; min-height: 40px;"></textarea>
+        <div id="mainContent">
+
+        </div>
     </div>
 
     <!-- DO NOT REMOVE THIS (otherwise everyone will be sad) -->
@@ -107,6 +124,7 @@
     <script src="popup.js"></script>
 </body>
 
-<link rel="stylesheet" href="Main.css"></link>
+<link rel="stylesheet" href="Magnifier.css">
+</link>
 
 </html>

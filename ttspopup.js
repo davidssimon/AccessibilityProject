@@ -105,7 +105,6 @@ document.addEventListener("DOMContentLoaded", function() {
         return pageText;
     }
 
-    // Populate the voices dropdown
     function populateVoices() {
         voices = window.speechSynthesis.getVoices();
         voicesSelect.innerHTML = '';
@@ -121,14 +120,12 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Load voices when available
     if (window.speechSynthesis.onvoiceschanged !== undefined) {
         window.speechSynthesis.onvoiceschanged = populateVoices;
     } else {
         populateVoices();
     }
 
-    // Update pitch and rate values when sliders are changed
     pitchSlider.addEventListener("input", () => {
         pitchValue.textContent = pitchSlider.value;
     });

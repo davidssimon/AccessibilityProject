@@ -21,7 +21,33 @@ let voices = [];
 document.getElementById("contrast-toggle").addEventListener("click", function () {
   // Example: Toggle high contrast mode
   document.body.classList.toggle("high-contrast");
-  this.textContent = this.textContent === "Enable" ? "Disable" : "Enable";
+  document.getElementById("mainContent").innerHTML = `
+  <h3>Edit Colors</h3>
+  <!-- Heading for the popup -->
+
+  <!-- Contrast slider label and value -->
+  <label for="contrast">
+    Contrast: <span id="contrast-value">100%</span> <!-- Display current contrast value -->
+  </label>
+  <i class="fa fa-adjust" aria-hidden="true"></i>
+  <input type="range" id="contrast" min="50" max="200" value="100">
+  <!-- Contrast slider: min 50%, max 200%, default 100% -->
+
+  <!-- Brightness slider label and value -->
+  <label for="brightness">
+    Brightness: <span id="brightness-value">100%</span> <!-- Display current brightness value -->
+  </label>
+  <i class="fa fa-sun-o" aria-hidden="true"></i> <!-- Icon -->
+  <input type="range" id="brightness" min="50" max="200" value="100">
+  <!-- Brightness slider: min 50%, max 200%, default 100% -->
+
+  <!-- Error message placeholder -->
+  <div id="error-message" style="color: red; display: none;">
+    <!-- Hidden by default, shown if there's an error -->
+  </div>
+
+  <script src="cbpopup2.js"></script>
+  `
 });
 
 
@@ -48,7 +74,6 @@ document.getElementById("contrast-toggle").addEventListener("click", function ()
 document.getElementById("voice-controls").addEventListener("click", function () {
   //toggle voice controls
   document.body.classList.toggle("voice-controls");
-  this.textContent = "Open";
 });
 
 document.getElementById("magnifier").addEventListener("click", function () {
@@ -380,6 +405,8 @@ slide.addEventListener('input', function () {
     target: 'offscreen',
     data: this.value
   });
+
+  chrome.storage.sync.set({barVal: this.value});
 });
 
 btn.onclick = function () {
@@ -390,3 +417,7 @@ btn.onclick = function () {
   
   slide.value = 1;
 }
+
+// chrome.storage.sync.get(['barVal'], function(result) {
+//   
+// });
